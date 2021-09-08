@@ -1,14 +1,14 @@
 /* [Basic-Settings] */
 
 // Length in units of key. A regular key is 1 unit; spacebar is usually 6.25
-$key_length = 1.0; // Range not working in thingiverse customizer atm [1:0.25:16]
+$key_length = 1.0; // [1:0.25:16]
 
 // What type of stem you want. Most people want Cherry.
 $stem_type = "cherry";  // [cherry, alps, rounded_cherry, box_cherry, filled, disable]
 
 // The stem is the hardest part to print, so this variable controls how much 'slop' there is in the stem
 // if your keycaps stick in the switch raise this value
-$stem_slop = 0.35; // Not working in thingiverse customizer atm [0:0.01:1]
+$stem_slop = 0.35; // [0:0.01:1]
 // broke this out. if your keycaps are falling off lower this value. only works for cherry stems rn
 $stem_inner_slop = 0.2;
 
