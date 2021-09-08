@@ -4,7 +4,7 @@ module dsa_row(row=3, column = 0) {
   $bottom_key_height = 18.24; // 18.4;
   $width_difference = 6; // 5.7;
   $height_difference = 6; // 5.7;
-  $top_tilt = row == 5 ? -21 : (row-3) * 7;
+  $top_tilt = row == 0 ? 0 : row == 5 ? -21 : (row-3) * 7;
   $top_skew = 0;
   $dish_type = "spherical";
   $dish_depth = 1.2;
