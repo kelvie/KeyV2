@@ -13,7 +13,11 @@ $stem_slop = 0.35; // [0:0.01:1]
 $stem_inner_slop = 0.2;
 
 // Font size used for text
-$font_size = 6;
+$font_size = 6; // [0.5:0.5:10]
+
+// Font size uesd for text in the front
+$front_font_size = 6; // [0.5:0.5:10]
+
 
 // Set this to true if you're making a spacebar!
 $inverted_dish = false;
