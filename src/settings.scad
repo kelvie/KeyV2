@@ -119,6 +119,9 @@ $dish_overdraw_height = 0;
 // There's a bevel on the cherry stems to aid insertion / guard against first layer squishing making a hard-to-fit stem.
 $cherry_bevel = true;
 
+// How much to offset the cherry stem bevel. Reduce if you want it to be farther from the edge of the stem for rounded/boxed stems.
+$cherry_bevel_offset = 0.4; // [0.2:0.05:0.6]
+
 // How tall in mm the stem support is, if there is any. stem support sits around the keystem and helps to secure it while printing.
 $stem_support_height = .8;
 // Font used for text
