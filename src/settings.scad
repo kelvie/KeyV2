@@ -149,6 +149,9 @@ $key_bump_depth = 0.5;
 //distance to move the bump from the front edge of the key
 $key_bump_edge = 0.4;
 
+// how recessed inset legends / artisans are from the top of the key
+$inset_legend_depth = 0.2;
+
 /* [Hidden] */
 
 // set this to true if you are making double sculpted keycaps
@@ -168,10 +171,6 @@ $front_legends = [];
 
 // print legends on the front of the key instead of the top
 $front_print_legends = false;
-
-// how recessed inset legends / artisans are from the top of the key
-$inset_legend_depth = 0.2;
-
 // Dimensions of alps stem
 $alps_stem = [4.45, 2.25];
 
