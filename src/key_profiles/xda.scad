@@ -7,7 +7,7 @@ module xda_row(row=0, column = 0) {
   $top_tilt = row == 0 ? 0 : row == 5 ? -21 : (row-3) * 7;
   $top_skew = 0;
   $dish_type = "spherical";
-  $dish_depth = 0.5;
+  $dish_depth = 0.65;
   $dish_skew_x = 0;
   $dish_skew_y = 0;
   $height_slices = 10;
