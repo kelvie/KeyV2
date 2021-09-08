@@ -11,6 +11,8 @@ row = 1; // [5,1,2,3,4,0]
 // What does the top of your key say?
 legend = "";
 
+front_legend = "";
+
 $using_customizer = true;
 
 /* [Basic-Settings] */
@@ -28,7 +30,11 @@ $stem_slop = 0.35; // [0:0.01:1]
 $stem_inner_slop = 0.2;
 
 // Font size used for text
-$font_size = 6;
+$font_size = 6; // [0.5:0.5:10]
+
+// Font size uesd for text in the front
+$front_font_size = 6; // [0.5:0.5:10]
+
 
 // Set this to true if you're making a spacebar!
 $inverted_dish = false;
@@ -130,6 +136,9 @@ $dish_overdraw_height = 0;
 // There's a bevel on the cherry stems to aid insertion / guard against first layer squishing making a hard-to-fit stem.
 $cherry_bevel = true;
 
+// How much to offset the cherry stem bevel. Reduce if you want it to be farther from the edge of the stem for rounded/boxed stems.
+$cherry_bevel_offset = 0.4; // [0.2:0.05:0.6]
+
 // How tall in mm the stem support is, if there is any. stem support sits around the keystem and helps to secure it while printing.
 $stem_support_height = .8;
 // Font used for text
@@ -157,6 +166,9 @@ $key_bump_depth = 0.5;
 //distance to move the bump from the front edge of the key
 $key_bump_edge = 0.4;
 
+// how recessed inset legends / artisans are from the top of the key
+$inset_legend_depth = 0.2;
+
 /* [Hidden] */
 
 // set this to true if you are making double sculpted keycaps
@@ -176,10 +188,6 @@ $front_legends = [];
 
 // print legends on the front of the key instead of the top
 $front_print_legends = false;
-
-// how recessed inset legends / artisans are from the top of the key
-$inset_legend_depth = 0.2;
-
 // Dimensions of alps stem
 $alps_stem = [4.45, 2.25];
 
@@ -701,7 +709,7 @@ module dss_row(n=3, column=0) {
   $top_tilt = row == 0 ? 0 : row == 5 ? -21 : (row-3) * 7;
   $top_skew = 0;
   $dish_type = "spherical";
-  $dish_depth = 0.5;
+  $dish_depth = 0.65;
   $dish_skew_x = 0;
   $dish_skew_y = 0;
   $height_slices = 10;
@@ -3162,7 +3170,7 @@ module inside_cherry_cross(slop) {
   // Guides to assist insertion and mitigate first layer squishing
   if ($cherry_bevel){
     for (i = cherry_cross(slop, extra_vertical)) hull() {
-      linear_extrude(height = 0.01, center = false) offset(delta = 0.4) square(i, center=true);
+      linear_extrude(height = 0.01, center = false) offset(delta = $cherry_bevel_offset) square(i, center=true);
       translate([0, 0, 0.5]) linear_extrude(height = 0.01, center = false)  square(i, center=true);
     }
   }
@@ -3332,7 +3340,7 @@ module inside_cherry_cross(slop) {
   // Guides to assist insertion and mitigate first layer squishing
   if ($cherry_bevel){
     for (i = cherry_cross(slop, extra_vertical)) hull() {
-      linear_extrude(height = 0.01, center = false) offset(delta = 0.4) square(i, center=true);
+      linear_extrude(height = 0.01, center = false) offset(delta = $cherry_bevel_offset) square(i, center=true);
       translate([0, 0, 0.5]) linear_extrude(height = 0.01, center = false)  square(i, center=true);
     }
   }
@@ -3512,7 +3520,7 @@ module inside_cherry_cross(slop) {
   // Guides to assist insertion and mitigate first layer squishing
   if ($cherry_bevel){
     for (i = cherry_cross(slop, extra_vertical)) hull() {
-      linear_extrude(height = 0.01, center = false) offset(delta = 0.4) square(i, center=true);
+      linear_extrude(height = 0.01, center = false) offset(delta = $cherry_bevel_offset) square(i, center=true);
       translate([0, 0, 0.5]) linear_extrude(height = 0.01, center = false)  square(i, center=true);
     }
   }
@@ -3828,7 +3836,7 @@ module inside_cherry_cross(slop) {
   // Guides to assist insertion and mitigate first layer squishing
   if ($cherry_bevel){
     for (i = cherry_cross(slop, extra_vertical)) hull() {
-      linear_extrude(height = 0.01, center = false) offset(delta = 0.4) square(i, center=true);
+      linear_extrude(height = 0.01, center = false) offset(delta = $cherry_bevel_offset) square(i, center=true);
       translate([0, 0, 0.5]) linear_extrude(height = 0.01, center = false)  square(i, center=true);
     }
   }
@@ -4043,7 +4051,7 @@ module inside_cherry_cross(slop) {
   // Guides to assist insertion and mitigate first layer squishing
   if ($cherry_bevel){
     for (i = cherry_cross(slop, extra_vertical)) hull() {
-      linear_extrude(height = 0.01, center = false) offset(delta = 0.4) square(i, center=true);
+      linear_extrude(height = 0.01, center = false) offset(delta = $cherry_bevel_offset) square(i, center=true);
       translate([0, 0, 0.5]) linear_extrude(height = 0.01, center = false)  square(i, center=true);
     }
   }
@@ -5890,7 +5898,7 @@ module keytext(text, position, font_size, depth) {
   woffset = (top_total_key_width()/3.5) * position[0];
   hoffset = (top_total_key_height()/3.5) * -position[1];
   translate([woffset, hoffset, -depth]){
-    color($tertiary_color) linear_extrude(height=$dish_depth){
+    color($tertiary_color) linear_extrude(height=$dish_depth+1){
       text(text=text, font=$font, size=font_size, halign="center", valign="center");
     }
   }
@@ -6060,7 +6068,11 @@ $stem_slop = 0.35; // [0:0.01:1]
 $stem_inner_slop = 0.2;
 
 // Font size used for text
-$font_size = 6;
+$font_size = 6; // [0.5:0.5:10]
+
+// Font size uesd for text in the front
+$front_font_size = 6; // [0.5:0.5:10]
+
 
 // Set this to true if you're making a spacebar!
 $inverted_dish = false;
@@ -6162,6 +6174,9 @@ $dish_overdraw_height = 0;
 // There's a bevel on the cherry stems to aid insertion / guard against first layer squishing making a hard-to-fit stem.
 $cherry_bevel = true;
 
+// How much to offset the cherry stem bevel. Reduce if you want it to be farther from the edge of the stem for rounded/boxed stems.
+$cherry_bevel_offset = 0.4; // [0.2:0.05:0.6]
+
 // How tall in mm the stem support is, if there is any. stem support sits around the keystem and helps to secure it while printing.
 $stem_support_height = .8;
 // Font used for text
@@ -6189,6 +6204,9 @@ $key_bump_depth = 0.5;
 //distance to move the bump from the front edge of the key
 $key_bump_edge = 0.4;
 
+// how recessed inset legends / artisans are from the top of the key
+$inset_legend_depth = 0.2;
+
 /* [Hidden] */
 
 // set this to true if you are making double sculpted keycaps
@@ -6208,10 +6226,6 @@ $front_legends = [];
 
 // print legends on the front of the key instead of the top
 $front_print_legends = false;
-
-// how recessed inset legends / artisans are from the top of the key
-$inset_legend_depth = 0.2;
-
 // Dimensions of alps stem
 $alps_stem = [4.45, 2.25];
 
@@ -6251,6 +6265,6 @@ if (!$using_customizer) {
   example_key();
 }
 
-key_profile(key_profile, row) legend(legend) {
+key_profile(key_profile, row) legend(legend) front_legend(front_legend, [0, 0], $front_font_size) {
   key();
 }
