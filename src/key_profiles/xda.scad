@@ -12,13 +12,13 @@ module xda_row(row=0, column = 0) {
   $dish_skew_y = 0;
   $height_slices = 10;
   $enable_side_sculpting = true;
-  $corner_radius = 1;
+  $corner_radius = 0.5;
 
   $top_tilt_y = side_tilt(column);
   extra_height = $double_sculpted ? extra_side_tilt_height(column) : 0;
 
   depth_raisers = [0, 3.5, 1, 0, 1, 3];
   // Measured height was 8.3 at the corner
-  $total_depth = 8.5 + extra_height + depth_raisers[row];
+  $total_depth = 8.7 + extra_height + depth_raisers[row];
   children();
 }
