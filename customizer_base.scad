@@ -11,7 +11,11 @@ row = 1; // [5,1,2,3,4,0]
 // What does the top of your key say?
 legend = "";
 
+// What does the front of your key say?
 front_legend = "";
+
+// Shift the front text up (positive) or down (negative)
+front_voffset = 0; // [-2:0.1:2]
 
 $using_customizer = true;
 
@@ -24,6 +28,6 @@ include <src/key_transformations.scad>
 include <src/key_helpers.scad>
 include <src/key.scad>
 
-key_profile(key_profile, row) legend(legend) front_legend(front_legend, [0, 0], $front_font_size) {
+key_profile(key_profile, row) legend(legend) front_legend(front_legend, [0, -front_voffset], $front_font_size) {
   key();
 }
