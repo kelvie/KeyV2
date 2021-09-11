@@ -169,9 +169,9 @@ $minkowski_radius = .33;
 //insert locating bump
 $key_bump = false;
 //height of the location bump from the top surface of the key
-$key_bump_depth = 0.5;
+$key_bump_depth = 0.25; // [0.05:0.05:1.0]
 //distance to move the bump from the front edge of the key
-$key_bump_edge = 0.4;
+$key_bump_edge = 1.0; // [0:0.1:5]
 
 // how recessed inset legends / artisans are from the top of the key
 $inset_legend_depth = 0.2;
@@ -6219,9 +6219,9 @@ $minkowski_radius = .33;
 //insert locating bump
 $key_bump = false;
 //height of the location bump from the top surface of the key
-$key_bump_depth = 0.5;
+$key_bump_depth = 0.25; // [0.05:0.05:1.0]
 //distance to move the bump from the front edge of the key
-$key_bump_edge = 0.4;
+$key_bump_edge = 1.0; // [0:0.1:5]
 
 // how recessed inset legends / artisans are from the top of the key
 $inset_legend_depth = 0.2;
