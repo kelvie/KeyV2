@@ -24,9 +24,9 @@
             "$height_slices": "1",
             "$inset_legend_depth": "0.20000000000000001",
             "$inverted_dish": "false",
-            "$key_bump": "false",
-            "$key_bump_depth": "0.5",
-            "$key_bump_edge": "0.40000000000000002",
+            "$key_bump": "true",
+            "$key_bump_depth": "0.29999999999999999",
+            "$key_bump_edge": "0.69999999999999996",
             "$key_height": "1",
             "$key_length": "1",
             "$key_shape_type": "rounded_square",
@@ -55,12 +55,12 @@
             "$using_customizer": "true",
             "$wall_thickness": "3",
             "$width_difference": "6",
-            "front_legend": "LED-",
+            "front_legend": "LED+",
             "front_voffset": "0.30000000000000027",
             "key_profile": "xda",
-            "legend": "-",
+            "legend": "=",
             "row": "0",
-            "shift_legend": "_"
+            "shift_legend": "+"
         }
     }
 }
