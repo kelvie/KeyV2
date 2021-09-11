@@ -157,15 +157,13 @@ $inset_legend_depth = 0.2;
 // set this to true if you are making double sculpted keycaps
 $double_sculpted = false;
 
-//list of legends to place on a key format: [text, halign, valign, size]
-//halign = "left" or "center" or "right"
-//valign = "top" or "center" or "bottom"
+//list of legends to place on a key format: [text, position, font_size]
+// position is [x, y]
 // Currently does not work with thingiverse customizer, and actually breaks it
 $legends = [];
 
-//list of front legends to place on a key format: [text, halign, valign, size]
-//halign = "left" or "center" or "right"
-//valign = "top" or "center" or "bottom"
+//list of front legends to place on a key format: [text, position, font_size]
+// position is [x, y]
 // Currently does not work with thingiverse customizer, and actually breaks it
 $front_legends = [];
 

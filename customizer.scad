@@ -11,7 +11,14 @@ row = 1; // [5,1,2,3,4,0]
 // What does the top of your key say?
 legend = "";
 
+// Legend for the "shift" version of the key -- it will be displayed on top
+shift_legend = "";
+
+// What does the front of your key say?
 front_legend = "";
+
+// Shift the front text up (positive) or down (negative)
+front_voffset = 0; // [-2:0.1:2]
 
 $using_customizer = true;
 
@@ -174,15 +181,13 @@ $inset_legend_depth = 0.2;
 // set this to true if you are making double sculpted keycaps
 $double_sculpted = false;
 
-//list of legends to place on a key format: [text, halign, valign, size]
-//halign = "left" or "center" or "right"
-//valign = "top" or "center" or "bottom"
+//list of legends to place on a key format: [text, position, font_size]
+// position is [x, y]
 // Currently does not work with thingiverse customizer, and actually breaks it
 $legends = [];
 
-//list of front legends to place on a key format: [text, halign, valign, size]
-//halign = "left" or "center" or "right"
-//valign = "top" or "center" or "bottom"
+//list of front legends to place on a key format: [text, position, font_size]
+// position is [x, y]
 // Currently does not work with thingiverse customizer, and actually breaks it
 $front_legends = [];
 
@@ -714,14 +719,14 @@ module dss_row(n=3, column=0) {
   $dish_skew_y = 0;
   $height_slices = 10;
   $enable_side_sculpting = true;
-  $corner_radius = 1;
+  $corner_radius = 0.5;
 
   $top_tilt_y = side_tilt(column);
   extra_height = $double_sculpted ? extra_side_tilt_height(column) : 0;
 
   depth_raisers = [0, 3.5, 1, 0, 1, 3];
   // Measured height was 8.3 at the corner
-  $total_depth = 8.5 + extra_height + depth_raisers[row];
+  $total_depth = 8.7 + extra_height + depth_raisers[row];
   children();
 }
 
@@ -1014,9 +1019,12 @@ module flat_support() {
   children();
 }
 
-module legend(text, position=[0,0], size=undef) {
+module legend(text, position=[0,0], size=undef, shift_text="") {
     font_size = size == undef ? $font_size : size;
-    $legends = [for(L=[$legends, [[text, position, font_size]]], a=L) a];
+    // If there is shift text, we need to make sure we position them properly
+    $legends = len(shift_text) > 0 ?
+      [for(L=[$legends, [[text, position + [0, font_size/4], font_size,], [shift_text, position - [0, font_size/4], font_size]]], a=L) a] :
+      [for(L=[$legends, [[text, position, font_size]]], a=L) a];
     children();
 }
 
@@ -6212,15 +6220,13 @@ $inset_legend_depth = 0.2;
 // set this to true if you are making double sculpted keycaps
 $double_sculpted = false;
 
-//list of legends to place on a key format: [text, halign, valign, size]
-//halign = "left" or "center" or "right"
-//valign = "top" or "center" or "bottom"
+//list of legends to place on a key format: [text, position, font_size]
+// position is [x, y]
 // Currently does not work with thingiverse customizer, and actually breaks it
 $legends = [];
 
-//list of front legends to place on a key format: [text, halign, valign, size]
-//halign = "left" or "center" or "right"
-//valign = "top" or "center" or "bottom"
+//list of front legends to place on a key format: [text, position, font_size]
+// position is [x, y]
 // Currently does not work with thingiverse customizer, and actually breaks it
 $front_legends = [];
 
@@ -6265,6 +6271,6 @@ if (!$using_customizer) {
   example_key();
 }
 
-key_profile(key_profile, row) legend(legend) front_legend(front_legend, [0, 0], $front_font_size) {
+key_profile(key_profile, row) legend(legend, shift_text=shift_legend) front_legend(front_legend, [0, -front_voffset], $front_font_size) {
   key();
 }

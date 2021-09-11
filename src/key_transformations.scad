@@ -131,9 +131,12 @@ module flat_support() {
   children();
 }
 
-module legend(text, position=[0,0], size=undef) {
+module legend(text, position=[0,0], size=undef, shift_text="") {
     font_size = size == undef ? $font_size : size;
-    $legends = [for(L=[$legends, [[text, position, font_size]]], a=L) a];
+    // If there is shift text, we need to make sure we position them properly
+    $legends = len(shift_text) > 0 ?
+      [for(L=[$legends, [[text, position + [0, font_size/4], font_size,], [shift_text, position - [0, font_size/4], font_size]]], a=L) a] :
+      [for(L=[$legends, [[text, position, font_size]]], a=L) a];
     children();
 }
 

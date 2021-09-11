@@ -11,6 +11,9 @@ row = 1; // [5,1,2,3,4,0]
 // What does the top of your key say?
 legend = "";
 
+// Legend for the "shift" version of the key -- it will be displayed on top
+shift_legend = "";
+
 // What does the front of your key say?
 front_legend = "";
 
@@ -28,6 +31,6 @@ include <src/key_transformations.scad>
 include <src/key_helpers.scad>
 include <src/key.scad>
 
-key_profile(key_profile, row) legend(legend) front_legend(front_legend, [0, -front_voffset], $front_font_size) {
+key_profile(key_profile, row) legend(legend, shift_text=shift_legend) front_legend(front_legend, [0, -front_voffset], $front_font_size) {
   key();
 }
